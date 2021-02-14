@@ -30,26 +30,90 @@ export PATH
 # LCYAN=$(echo -en '\033[01;36m')
 # WHITE=$(echo -en '\033[01;37m')
 
+rightPrompt() {
+	local RCol='\[\e[0m\]'
+
+	local Red='\[\e[0;31m\]'
+	local Gre='\[\e[0;32m\]'
+	local Yel='\[\e[1;33m\]'
+	local Pur='\[\e[0;35m\]'
+
+	local GitCompete=""
+	local compensate=13
+	# Right side of prompt
+	# 1. git stuff
+	local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
+
+	# Modified files
+	local GSPm="$(grep -c "^[12] .M" <<< "${GSP}")"
+	if [ "${GSPm}" -gt "0" ]; then
+		GitComplete+="${Yel}!"
+		compensate=$((${compensate}+10))
+	fi
+
+	# Deleted files
+#	local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
+#	if [ "${GSPd}" -gt "0" ]; then
+#		GitComplete+="${Red}D"
+#		compensate=$((${compensate}+11))
+#	fi
+
+	# Added files
+	local GSPa="$(grep -c "^[12] A" <<< "${GSP}")"
+	if [ "${GSPa}" -gt "0" ]; then
+		GitComplete+="${Gre}+"
+		compensate=$((${compensate}+5))
+	fi
+
+	# Renamed files
+#	local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
+#	if [ "${GSPr}" -gt "0" ]; then
+#		GitComplete+="${Red}r"
+#		compensate=$((${compensate}+11))
+#	fi
+
+	# Untracked files
+	local GSPu="$(grep -c "^?" <<< "${GSP}")"
+	if [ "${GSPu}" -gt "0" ]; then
+		GitComplete+="${Red}?"
+		compensate=$((${compensate}+12))
+	fi
+
+	# Branch
+	local Branch="$(awk '/branch.head/ {print $3}' <<< "${GSP}")"
+	GitComplete+=" ${Pur}${Branch}"
+
+	printf "%*s" "$(($COLUMNS+${compensate}))" "${GitComplete}"
+}
+
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
 
 __prompt_command() {
-    local EXIT="$?"             # This needs to be first
-    PS1=""
+	local EXIT="$?"			# This needs to be first
+	PS1=""
 
-    local RCol='\[\e[0m\]'
+	local RCol='\[\e[0m\]'
 
-    local Red='\[\e[0;31m\]'
-    local Gre='\[\e[0;32m\]'
-    local BYel='\[\e[1;33m\]'
-    local BBlu='\[\e[1;34m\]'
-    local Pur='\[\e[0;35m\]'
-    local Cyan='\[\e[0;36m\]'
+	local Red='\[\e[0;31m\]'
+	local Gre='\[\e[0;32m\]'
+	local BYel='\[\e[1;33m\]'
+	local BBlu='\[\e[1;34m\]'
+	local Pur='\[\e[0;35m\]'
+	local Cyan='\[\e[0;36m\]'
 
-    if [ $EXIT != 0 ]; then
-        PS1+="${Red}>${RCol}"      # Add red if exit code non 0
-    else
-        PS1+="${Gre}>${RCol}"
-    fi
+	# printing Right Side of prompt and putting cursor back at start
+	PS1+="\[$(tput sc; rightPrompt; tput rc)\]"
 
-    PS1+=" ${Cyan}\W${RCol} "
+	# Left side of prompt
+	# 1. exit code color
+	# 2. current working directory
+	if [ $EXIT != 0 ]; then
+		PS1+="${Red}>${RCol}"	# Add red if exit code non 0
+	else
+		PS1+="${Gre}>${RCol}"
+	fi
+
+	PS1+=" ${Cyan}\W${RCol} "
+
+
 }
