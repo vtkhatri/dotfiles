@@ -39,7 +39,7 @@ rightPrompt() {
 	local Pur='\[\e[0;35m\]'
 
 	local GitCompete=""
-	local compensate=13
+	local ColorCompensate=0
 	# Right side of prompt
 	# 1. git stuff
 	local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
@@ -47,43 +47,45 @@ rightPrompt() {
 	# Modified files
 	local GSPm="$(grep -c "^[12] .M" <<< "${GSP}")"
 	if [ "${GSPm}" -gt "0" ]; then
-		GitComplete+="${Yel}!"
-		compensate=$((${compensate}+10))
+		GitString+="${Yel}!"
+		ColorCompensate=$((${ColorCompensate}+${#Yel}))
 	fi
 
 	# Deleted files
 #	local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
 #	if [ "${GSPd}" -gt "0" ]; then
-#		GitComplete+="${Red}D"
-#		compensate=$((${compensate}+11))
+#		GitString+="${Red}D"
+#		ColorCompensate=$((${ColorCompensate}+${#Red}))
 #	fi
 
 	# Added files
 	local GSPa="$(grep -c "^[12] A" <<< "${GSP}")"
 	if [ "${GSPa}" -gt "0" ]; then
-		GitComplete+="${Gre}+"
-		compensate=$((${compensate}+5))
+		GitString+="${Gre}+"
+		ColorCompensate=$((${ColorCompensate}+${#Gre}))
 	fi
 
 	# Renamed files
 #	local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
 #	if [ "${GSPr}" -gt "0" ]; then
-#		GitComplete+="${Red}r"
-#		compensate=$((${compensate}+11))
+#		GitString+="${Red}r"
+#		ColorCompensate=$((${ColorCompensate}+${#Red}))
 #	fi
 
 	# Untracked files
 	local GSPu="$(grep -c "^?" <<< "${GSP}")"
 	if [ "${GSPu}" -gt "0" ]; then
-		GitComplete+="${Red}?"
-		compensate=$((${compensate}+12))
+		GitString+="${Red}?"
+		ColorCompensate=$((${ColorCompensate}+${#Red}))
 	fi
 
 	# Branch
 	local Branch="$(awk '/branch.head/ {print $3}' <<< "${GSP}")"
-	GitComplete+=" ${Pur}${Branch}"
+	GitString+=" ${Pur}${Branch}"
+	ColorCompensate=$((${ColorCompensate}+${#Pur}))
 
-	printf "%*s" "$(($COLUMNS+${compensate}))" "${GitComplete}"
+	local Columns=$COLUMNS
+	printf "%*s" "$((${Columns}+${ColorCompensate}))" "${GitString} "
 }
 
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
