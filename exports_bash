@@ -13,6 +13,7 @@ alias gpd='git push --dry-run'
 alias gr='git remote'
 alias grb='git rebase'
 alias gss='git status -s'
+alias gco='git checkout'
 
 function cdu {
 	cd ${PWD%$1/*}$1
