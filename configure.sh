@@ -67,3 +67,25 @@ then
 else
 	ln -s $PWD/bashrc /home/$user/.bashrc
 fi
+
+if [ ! -d /home/$user/.config ]
+then
+	echo "~/.config not found, making directory"
+	ln -s $PWD/exports_bash /home/$user/.config/exports_bash
+else
+	if [ -f /home/$user/.config/exports_bash ]
+	then
+		if [ ! -L /home/$user/.config/exports_bash ]
+		then
+			echo "~/.config/exports_bash not a symlink, moving file and linking"
+			mv /home/$user/.config/exports_bash /home/$user/.config/old_exports_bash
+			ln -s $PWD/exports_bash /home/$user/.config/exports_bash
+		else
+			echo "~/.config/exports_bash is already a symlink, updating"
+			rm /home/$user/.config/exports_bash
+			ln -s $PWD/exports_bash /home/$user/.config/exports_bash
+		fi
+	else
+		ln -s $PWD/exports_bash /home/$user/.config/exports_bash
+	fi
+fi

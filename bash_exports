@@ -1,0 +1,19 @@
+export LESSHISTGILE="$HOME/.history/less"
+
+alias ls='ls --group-directories-first --color=tty'
+alias ta='tmux -2u a -t'
+alias tn='tmux -2u new -s'
+alias tkill='tmux kill-server'
+alias gl='git pull'
+alias glg='git log --stat'
+alias glo='git log --oneline --decorate'
+alias gm='git merge'
+alias gp='git push'
+alias gpd='git push --dry-run'
+alias gr='git remote'
+alias grb='git rebase'
+alias gss='git status -s'
+
+function cdu {
+	cd ${PWD%$1/*}$1
+}
