@@ -42,12 +42,28 @@ then
 	then
 		echo "~/.tmux.conf not a symlink, moving file and linking"
 		mv /home/$user/.tmux.conf /home/$user/.old_tmux.conf
-		ln -s $PWD/.tmux.conf /home/$user/.tmux.conf
+		ln -s $PWD/tmux.conf /home/$user/.tmux.conf
 	else
 		echo "~/.tmux.conf is already a symlink, updating"
 		rm /home/$user/.tmux.conf
-		ln -s $PWD/.tmux.conf /home/$user/.tmux.conf
+		ln -s $PWD/tmux.conf /home/$user/.tmux.conf
 	fi
 else
-	ln -s $PWD/.tmux.conf /home/$user/.tmux.conf
+	ln -s $PWD/tmux.conf /home/$user/.tmux.conf
+fi
+
+if [ -f /home/$user/.bashrc ]
+then
+	if [ ! -L /home/$user/.bashrc ]
+	then
+		echo "~/.bashrc not a symlink, moving file and linking"
+		mv /home/$user/.bashrc /home/$user/.old_bashrc
+		ln -s $PWD/bashrc /home/$user/.bashrc
+	else
+		echo "~/.bashrc is already a symlink, updating"
+		rm /home/$user/.bashrc
+		ln -s $PWD/bashrc /home/$user/.bashrc
+	fi
+else
+	ln -s $PWD/bashrc /home/$user/.bashrc
 fi
