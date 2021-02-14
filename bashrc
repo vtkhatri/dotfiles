@@ -18,6 +18,12 @@ then
 	source $HOME/.config/exports_bash
 fi
 
+# Local exports
+if [ -f $HOME/.config/exports_bash.local ]
+then
+	source $HOME/.config/exports_bash.local
+fi
+
 # RESTORE=$(echo -en '\033[0m')
 # RED=$(echo -en '\033[00;31m')
 # GREEN=$(echo -en '\033[00;32m')
