@@ -8,7 +8,7 @@ then
 fi
 
 
-if [ ! -d "~/.vim" ]
+if [ ! -d /home/$user/.vim ]
 then
 	echo "~/.vim not found, making parent, backup and undo dirs"
 	mkdir -p ~/.vim/bkps ~/.vim/undos
