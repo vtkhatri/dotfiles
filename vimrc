@@ -25,14 +25,15 @@ set hlsearch
 set path+=**
 set omnifunc=syntaxcomplete#Complete
 
-function! CleverTab()
-	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-		return "\<Tab>"
-	else
-		return "\<C-N>"
-	endif
-endfunction
-inoremap <Tab> <C-R>=CleverTab()<CR>
+" CleverTab not working as intended
+" function! CleverTab()
+" 	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+" 		return "\<Tab>"
+" 	else
+" 		return "\<C-N>"
+" 	endif
+" endfunction
+" inoremap <Tab> <C-R>=CleverTab()<CR>
 
 set smartcase
 set wildmenu
