@@ -66,14 +66,14 @@ then
 	then
 		echo "~/.bashrc not a symlink, moving file and linking"
 		mv /home/$user/.bash_profile /home/$user/.old_bash_profile
-		ln -s $PWD/profile /home/$user/.bash_profile
+		ln -s $PWD/bash_profile /home/$user/.bash_profile
 	else
 		echo "~/.bashrc is already a symlink, updating"
 		rm /home/$user/.bash_profile
-		ln -s $PWD/profile /home/$user/.bash_profile
+		ln -s $PWD/bash_profile /home/$user/.bash_profile
 	fi
 else
-	ln -s $PWD/profile /home/$user/.bash_profile
+	ln -s $PWD/bash_profile /home/$user/.bash_profile
 fi
 
 if [ -f /home/$user/.bashrc ]
