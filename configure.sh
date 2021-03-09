@@ -46,7 +46,7 @@ fi
 if [ -f /home/$user/.vimrc ]
 then
 	echo "moving ~/.vimrc to ~/.vim/old_vimrc"
-	mv /home/$user/.vimrc /home/$user/.vim/old_vimrc
+	mv /home/$user/.vimrc /home/$user/.vim/vimrc_old
 fi
 
 create_links vimrc /home/$user/.vim/vimrc
