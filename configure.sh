@@ -7,7 +7,9 @@ then
 	exit
 fi
 
-
+##############
+# vim config #
+##############
 if [ ! -d /home/$user/.vim ]
 then
 	echo "~/.vim not found, making parent, backup and undo dirs"
@@ -36,6 +38,9 @@ else
 	ln -s $PWD/vimrc /home/$user/.vim/vimrc
 fi
 
+###############
+# tmux config #
+###############
 if [ -f /home/$user/.tmux.conf ]
 then
 	if [ ! -L /home/$user/.tmux.conf ]
@@ -50,6 +55,25 @@ then
 	fi
 else
 	ln -s $PWD/tmux.conf /home/$user/.tmux.conf
+fi
+
+##############
+# bash setup #
+##############
+if [ -f /home/$user/.bash_profile ]
+then
+	if [ ! -L /home/$user/.bash_profile ]
+	then
+		echo "~/.bashrc not a symlink, moving file and linking"
+		mv /home/$user/.bash_profile /home/$user/.old_bash_profile
+		ln -s $PWD/profile /home/$user/.bash_profile
+	else
+		echo "~/.bashrc is already a symlink, updating"
+		rm /home/$user/.bash_profile
+		ln -s $PWD/profile /home/$user/.bash_profile
+	fi
+else
+	ln -s $PWD/profile /home/$user/.bash_profile
 fi
 
 if [ -f /home/$user/.bashrc ]
