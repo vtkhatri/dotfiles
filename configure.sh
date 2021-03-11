@@ -3,7 +3,7 @@
 user=`whoami`
 if [ "$user" == "root" ]
 then
-	echo "Why are you running (as root)?"
+	echo "Why are you running?"
 	exit
 fi
 
@@ -45,7 +45,7 @@ fi
 
 if [ -f /home/$user/.vimrc ]
 then
-	echo "moving ~/.vimrc to ~/.vim/old_vimrc"
+	echo "moving ~/.vimrc to ~/.vim/vimrc_old"
 	mv /home/$user/.vimrc /home/$user/.vim/vimrc_old
 fi
 
