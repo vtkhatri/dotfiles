@@ -63,12 +63,12 @@ rightPrompt() {
 		ColorCompensate=$((${ColorCompensate}+${#Yel}))
 	fi
 
-	# Deleted files
-#	local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
-#	if [ "${GSPd}" -gt "0" ]; then
-#		GitString+="${Red}D"
-#		ColorCompensate=$((${ColorCompensate}+${#Red}))
-#	fi
+	# Renamed files
+	local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
+	if [ "${GSPr}" -gt "0" ]; then
+		GitString+="${Yel}r"
+		ColorCompensate=$((${ColorCompensate}+${#Yel}))
+	fi
 
 	# Staged and Tracked files
 	local GSPs="$(grep -c "^[12] [AM]." <<< "${GSP}")"
@@ -77,12 +77,13 @@ rightPrompt() {
 		ColorCompensate=$((${ColorCompensate}+${#Gre}))
 	fi
 
-	# Renamed files
-#	local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
-#	if [ "${GSPr}" -gt "0" ]; then
-#		GitString+="${Red}r"
-#		ColorCompensate=$((${ColorCompensate}+${#Red}))
-#	fi
+	# Deleted files
+	local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
+	if [ "${GSPd}" -gt "0" ]; then
+		GitString+="${Red}d"
+		ColorCompensate=$((${ColorCompensate}+${#Red}))
+	fi
+
 
 	# Untracked files
 	local GSPu="$(grep -c "^?" <<< "${GSP}")"
