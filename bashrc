@@ -63,13 +63,6 @@ rightPrompt() {
 		ColorCompensate=$((${ColorCompensate}+${#Yel}))
 	fi
 
-	# Renamed files
-	local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
-	if [ "${GSPr}" -gt "0" ]; then
-		GitString+="${Yel}r"
-		ColorCompensate=$((${ColorCompensate}+${#Yel}))
-	fi
-
 	# Staged and Tracked files
 	local GSPs="$(grep -c "^[12] [AM]." <<< "${GSP}")"
 	if [ "${GSPs}" -gt "0" ]; then
