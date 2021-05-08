@@ -70,9 +70,9 @@ rightPrompt() {
 #		ColorCompensate=$((${ColorCompensate}+${#Red}))
 #	fi
 
-	# Added files
-	local GSPa="$(grep -c "^[12] A" <<< "${GSP}")"
-	if [ "${GSPa}" -gt "0" ]; then
+	# Staged and Tracked files
+	local GSPs="$(grep -c "^[12] [AM]." <<< "${GSP}")"
+	if [ "${GSPs}" -gt "0" ]; then
 		GitString+="${Gre}+"
 		ColorCompensate=$((${ColorCompensate}+${#Gre}))
 	fi
