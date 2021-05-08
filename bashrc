@@ -78,7 +78,7 @@ rightPrompt() {
 	fi
 
 	# Deleted files
-	local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
+	local GSPd="$(grep -c "^[12] .D" <<< "${GSP}")"
 	if [ "${GSPd}" -gt "0" ]; then
 		GitString+="${Red}d"
 		ColorCompensate=$((${ColorCompensate}+${#Red}))
