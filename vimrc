@@ -35,7 +35,10 @@ set omnifunc=syntaxcomplete#Complete
 " endfunction
 " inoremap <Tab> <C-R>=CleverTab()<CR>
 
+set incsearch
+set ignorecase
 set smartcase
+
 set wildmenu
 set wildmode=list:longest,full
 
