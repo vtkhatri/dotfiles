@@ -34,12 +34,13 @@ then
 fi
 
 rightPrompt() {
-	local RCol='\[\e[0m\]'
+	local RCol=$(tput sgr0)
 
-	local Red='\[\e[0;31m\]'
-	local Gre='\[\e[0;32m\]'
-	local Yel='\[\e[1;33m\]'
-	local Pur='\[\e[0;35m\]'
+	local Red=$(tput setaf 1)
+	local Gre=$(tput setaf 2)
+	local Yel=$(tput setaf 3)
+	local Blu=$(tput setaf 3)
+	local Pur=$(tput setaf 5)
 
 	local GitCompete=""
 	local ColorCompensate=0
@@ -91,14 +92,15 @@ __prompt_command() {
 	local EXIT="$?"			# This needs to be first
 	PS1=""
 
-	local RCol='\[\e[0m\]'
+	# to check colors use -
+	# for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c ; done
+	local RCol=$(tput sgr0)
 
-	local Red='\[\e[0;31m\]'
-	local Gre='\[\e[0;32m\]'
-	local BYel='\[\e[1;33m\]'
-	local BBlu='\[\e[1;34m\]'
-	local Pur='\[\e[0;35m\]'
-	local Cyan='\[\e[0;36m\]'
+	local Red=$(tput setaf 1)
+	local Gre=$(tput setaf 2)
+	local Yel=$(tput setaf 3)
+	local Blu=$(tput setaf 3)
+	local Pur=$(tput setaf 5)
 
 	# printing Right Side of prompt and putting cursor back at start
 	PS1+="\[$(tput sc; rightPrompt; tput rc)\]"
