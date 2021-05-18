@@ -33,54 +33,37 @@ then
 	source $HOME/.config/exports_bash.local
 fi
 
-# RESTORE=$(echo -en '\033[0m')
-# RED=$(echo -en '\033[00;31m')
-# GREEN=$(echo -en '\033[00;32m')
-# YELLOW=$(echo -en '\033[00;33m')
-# BLUE=$(echo -en '\033[00;34m')
-# MAGENTA=$(echo -en '\033[00;35m')
-# PURPLE=$(echo -en '\033[00;35m')
-# CYAN=$(echo -en '\033[00;36m')
-# LIGHTGRAY=$(echo -en '\033[00;37m')
-# LRED=$(echo -en '\033[01;31m')
-# LGREEN=$(echo -en '\033[01;32m')
-# LYELLOW=$(echo -en '\033[01;33m')
-# LBLUE=$(echo -en '\033[01;34m')
-# LMAGENTA=$(echo -en '\033[01;35m')
-# LPURPLE=$(echo -en '\033[01;35m')
-# LCYAN=$(echo -en '\033[01;36m')
-# WHITE=$(echo -en '\033[01;37m')
-
 rightPrompt() {
-	local RCol='\[\e[0m\]'
+	local RCol=$(tput sgr0)
 
-	local Red='\[\e[0;31m\]'
-	local Gre='\[\e[0;32m\]'
-	local Yel='\[\e[1;33m\]'
-	local Pur='\[\e[0;35m\]'
+	local Red=$(tput setaf 1)
+	local Gre=$(tput setaf 2)
+	local Yel=$(tput setaf 3)
+	local Blu=$(tput setaf 3)
+	local Pur=$(tput setaf 5)
 
 	local GitCompete=""
 	local ColorCompensate=0
 	# Right side of prompt
 	# 1. git stuff
-	local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
+	local GSP="$(git status --porcelain --branch 2>/dev/null)"
 
 	# Modified files
-	local GSPm="$(grep -c "^[12] .M" <<< "${GSP}")"
+	local GSPm="$(grep -c "^ M" <<< "${GSP}")"
 	if [ "${GSPm}" -gt "0" ]; then
 		GitString+="${Yel}!"
 		ColorCompensate=$((${ColorCompensate}+${#Yel}))
 	fi
 
 	# Staged and Tracked files
-	local GSPs="$(grep -c "^[12] [AM]." <<< "${GSP}")"
+	local GSPs="$(grep -c "^[AM] " <<< "${GSP}")"
 	if [ "${GSPs}" -gt "0" ]; then
 		GitString+="${Gre}+"
 		ColorCompensate=$((${ColorCompensate}+${#Gre}))
 	fi
 
 	# Deleted files
-	local GSPd="$(grep -c "^[12] .D" <<< "${GSP}")"
+	local GSPd="$(grep -c "^ D" <<< "${GSP}")"
 	if [ "${GSPd}" -gt "0" ]; then
 		GitString+="${Red}d"
 		ColorCompensate=$((${ColorCompensate}+${#Red}))
@@ -95,7 +78,7 @@ rightPrompt() {
 	fi
 
 	# Branch
-	local Branch="$(awk '/branch.head/ {print $3}' <<< "${GSP}")"
+	local Branch="$(awk '/##/ {print $2}' <<< "${GSP}")"
 	GitString+=" ${Pur}${Branch}"
 	ColorCompensate=$((${ColorCompensate}+${#Pur}))
 
@@ -109,14 +92,15 @@ __prompt_command() {
 	local EXIT="$?"			# This needs to be first
 	PS1=""
 
-	local RCol='\[\e[0m\]'
+	# to check colors use -
+	# for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c ; done
+	local RCol=$(tput sgr0)
 
-	local Red='\[\e[0;31m\]'
-	local Gre='\[\e[0;32m\]'
-	local BYel='\[\e[1;33m\]'
-	local BBlu='\[\e[1;34m\]'
-	local Pur='\[\e[0;35m\]'
-	local Cyan='\[\e[0;36m\]'
+	local Red=$(tput setaf 1)
+	local Gre=$(tput setaf 2)
+	local Yel=$(tput setaf 3)
+	local Blu=$(tput setaf 3)
+	local Pur=$(tput setaf 5)
 
 	# printing Right Side of prompt and putting cursor back at start
 	PS1+="\[$(tput sc; rightPrompt; tput rc)\]"
