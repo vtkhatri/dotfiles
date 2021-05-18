@@ -25,6 +25,8 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gsh='git show'
+alias gb='git branch'
+alias gc='git commit'
 
 alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
 
