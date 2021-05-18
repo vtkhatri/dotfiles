@@ -5,7 +5,11 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-# Source global definitions
+# Global definitions
+shopt -s checkwinsize
+shopt -s no_empty_cmd_completion
+shopt -s histappend
+
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi

@@ -2,6 +2,10 @@ export LESSHISTFILE="$HOME/.history/less"
 
 alias ls='ls --group-directories-first --color=tty'
 
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
 # tmux aliases
 alias ta='tmux -2u a -t'
 alias tn='tmux -2u new -s'
