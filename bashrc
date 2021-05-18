@@ -1,5 +1,10 @@
 # .bashrc
 
+# Non-interactive shells
+if [[ $- != *i* ]] ; then
+	return
+fi
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
