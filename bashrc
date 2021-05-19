@@ -99,8 +99,8 @@ __prompt_command() {
 	local Red=$(tput setaf 1)
 	local Gre=$(tput setaf 2)
 	local Yel=$(tput setaf 3)
-	local Blu=$(tput setaf 3)
 	local Pur=$(tput setaf 5)
+	local Cyan=$(tput setaf 6)
 
 	# printing Right Side of prompt and putting cursor back at start
 	PS1+="\[$(tput sc; rightPrompt; tput rc)\]"
