@@ -79,7 +79,7 @@ rightPrompt() {
 
 	# Branch
 	local Branch="$(awk '/##/ {print $2}' <<< "${GSP}")"
-	GitString+=" ${Pur}${Branch}"
+	GitString+=" ${Pur}${Branch%...*}"
 	ColorCompensate=$((${ColorCompensate}+${#Pur}))
 
 	local Columns=$COLUMNS
