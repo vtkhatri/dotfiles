@@ -82,8 +82,8 @@ rightPrompt() {
 	GitString+="\[${Pur}\] ${Branch%...*}"
 	ColorCompensate=$((${ColorCompensate}+${#Pur}))
 
-	local Columns=$COLUMNS
-	printf "%*s" "$((${Columns}+${ColorCompensate}))" "${GitString} "
+	let Columns=$(tput cols)+$((${#GitString}-${ColorCompensate}-2))
+	printf "%${Columns}s" "${GitString} "
 }
 
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
@@ -114,7 +114,7 @@ __prompt_command() {
 		PS1+="\[${Gre}\]> "
 	fi
 
-	PS1+=" \[${Cyan}\]\W\[${RCol}\] "
+	PS1+="\[${Cyan}\]\W\[${RCol}\] "
 
 
 }
