@@ -51,21 +51,21 @@ rightPrompt() {
 	# Modified files
 	local GSPm="$(grep -c "^ M" <<< "${GSP}")"
 	if [ "${GSPm}" -gt "0" ]; then
-		GitString+="\[${Yel}\]!"
+		GitString+="${Yel}!"
 		ColorCompensate=$((${ColorCompensate}+${#Yel}))
 	fi
 
 	# Staged and Tracked files
 	local GSPs="$(grep -c "^[AM] " <<< "${GSP}")"
 	if [ "${GSPs}" -gt "0" ]; then
-		GitString+="\[${Gre}\]+"
+		GitString+="${Gre}+"
 		ColorCompensate=$((${ColorCompensate}+${#Gre}))
 	fi
 
 	# Deleted files
 	local GSPd="$(grep -c "^ D" <<< "${GSP}")"
 	if [ "${GSPd}" -gt "0" ]; then
-		GitString+="\[${Red}\]d"
+		GitString+="${Red}d"
 		ColorCompensate=$((${ColorCompensate}+${#Red}))
 	fi
 
@@ -73,17 +73,17 @@ rightPrompt() {
 	# Untracked files
 	local GSPu="$(grep -c "^?" <<< "${GSP}")"
 	if [ "${GSPu}" -gt "0" ]; then
-		GitString+="\[${Red}\]?"
+		GitString+="${Red}?"
 		ColorCompensate=$((${ColorCompensate}+${#Red}))
 	fi
 
 	# Branch
 	local Branch="$(awk '/##/ {print $2}' <<< "${GSP}")"
-	GitString+="\[${Pur}\] ${Branch%...*}"
+	GitString+="${Pur} ${Branch%...*}"
 	ColorCompensate=$((${ColorCompensate}+${#Pur}))
 
-	let Columns=$(tput cols)+$((${#GitString}-${ColorCompensate}-2))
-	printf "%${Columns}s" "${GitString} "
+	let Columns=$(tput cols)+${ColorCompensate}
+	printf "%*s" ${Columns} "${GitString} "
 }
 
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
