@@ -79,11 +79,11 @@ rightPrompt() {
 
 	# Branch
 	local Branch="$(awk '/##/ {print $2}' <<< "${GSP}")"
-	GitString+=" ${Pur}${Branch%...*}"
+	GitString+="${Pur} ${Branch%...*}"
 	ColorCompensate=$((${ColorCompensate}+${#Pur}))
 
-	local Columns=$COLUMNS
-	printf "%*s" "$((${Columns}+${ColorCompensate}))" "${GitString} "
+	let Columns=$(tput cols)+${ColorCompensate}
+	printf "%*s" ${Columns} "${GitString} "
 }
 
 PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
@@ -109,12 +109,12 @@ __prompt_command() {
 	# 1. exit code color
 	# 2. current working directory
 	if [ $EXIT != 0 ]; then
-		PS1+="${Red}>${RCol}"	# Add red if exit code non 0
+		PS1+="\[${Red}\]> "	# Add red if exit code non 0
 	else
-		PS1+="${Gre}>${RCol}"
+		PS1+="\[${Gre}\]> "
 	fi
 
-	PS1+=" ${Cyan}\W${RCol} "
+	PS1+="\[${Cyan}\]\W\[${RCol}\] "
 
 
 }
