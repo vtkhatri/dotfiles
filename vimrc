@@ -1,3 +1,4 @@
+" globals?
 let mapleader=" "
 set nocompatible
 set t_Co=256
@@ -5,25 +6,26 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 syntax enable
 set encoding=utf-8
+set path+=**
 
 " tabbing
 set ai
 set tabstop=8 softtabstop=0 shiftwidth=8 smarttab
 
+" organized backup and undo files
 set backup
 set backupdir=~/.vim/bkps/
 set undofile
 set undodir=~/.vim/undos/
 
+" colors
 set background=dark
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
+" gutter numbering
 set nu
 set relativenumber
-set hlsearch
-set path+=**
-set omnifunc=syntaxcomplete#Complete
 
 " CleverTab not working as intended
 " function! CleverTab()
@@ -35,10 +37,13 @@ set omnifunc=syntaxcomplete#Complete
 " endfunction
 " inoremap <Tab> <C-R>=CleverTab()<CR>
 
+" search
+set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 
+" tabbing in :
 set wildmenu
 set wildmode=list:longest,full
 
@@ -50,6 +55,7 @@ let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
+" maps
 map ; :
 
 map <leader>v <c-w>v
