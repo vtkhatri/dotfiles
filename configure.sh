@@ -31,7 +31,7 @@ create_links ()
 			ln -s $PWD/$current_dir_file $link_path
 		fi
 	else
-		echo ln -s $PWD/$current_dir_file $link_path
+		ln -s $PWD/$current_dir_file $link_path
 	fi
 }
 
@@ -66,4 +66,11 @@ then
 	ln -s $PWD/exports_bash /home/$user/.config/exports_bash
 else
 	create_links exports_bash /home/$user/.config/exports_bash
+fi
+
+# xinitrc for dwm
+
+if command -v dwm > /dev/null
+then
+	create_links xinitrc /home/$user/.xinitrc
 fi
