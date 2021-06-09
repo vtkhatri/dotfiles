@@ -43,6 +43,18 @@ then
 	mkdir -p /home/$user/.vim/bkps /home/$user/.vim/undos
 fi
 
+if [ ! -d /home/$user/.vim/bkps ]
+then
+	echo "~/.vim/bkps not found, making"
+	mkdir /home/$user/.vim/bkps
+fi
+
+if [ ! -d /home/$user/.vim/undos ]
+then
+	echo "~/.vim/undos not found, making"
+	mkdir /home/$user/.vim/undos
+fi
+
 if [ -f /home/$user/.vimrc ]
 then
 	echo "moving ~/.vimrc to ~/.vim/vimrc_old"
