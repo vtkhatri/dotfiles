@@ -2,9 +2,9 @@
 let mapleader=" "
 set nocompatible
 set t_Co=256
-filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 syntax enable
+filetype plugin indent on
 set encoding=utf-8
 set path+=**
 
