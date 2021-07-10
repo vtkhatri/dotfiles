@@ -58,6 +58,8 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " maps
 map ; :
 
+map <leader><leader> :b#<CR>
+
 map <leader>v <c-w>v
 map <leader>s <c-w>s
 map <leader>h <c-w>h
