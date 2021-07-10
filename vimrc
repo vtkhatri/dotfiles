@@ -67,8 +67,8 @@ map <leader>j <c-w>j
 map <leader>k <c-w>k
 map <leader>l <c-w>l
 
-map <leader>/ :let @/=""<CR>		" clear search highlight
-map <leader>p :tabe ~/post.md<CR>	" open post-it file
-map <leader>$ :s/\s\+$//g<CR>		" remove whitespace at the end of lines
+map <leader>/ :nohlsearch<CR>     " clear search highlight
+map <leader>p :tabe ~/post.md<CR> " open post-it file
+map <leader>$ :s/\s\+$//g<CR>     " remove whitespace at the end of lines
 
-map <leader>q :%bd<bar>e#<CR>		" delete all buffers except current
+map <leader>q :%bd<bar>e#<CR>     " delete all buffers except current
