@@ -1,4 +1,3 @@
-# TODO : does not work
-# function cdu
-# 	cd ${PWD%$1/*}$1
-# end
+function cdu
+	cd (string split -r -m1 $argv/ $PWD)[1]$argv
+end
