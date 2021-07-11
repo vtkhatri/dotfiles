@@ -1,8 +1,8 @@
 alias ls='exa --group-directories-first'
 
-alias grep='grep --color auto'
-alias egrep='egrep --color auto'
-alias fgrep='fgrep --color auto'
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
 
 # tmux aliases
 alias ta='tmux -2u a -t'
