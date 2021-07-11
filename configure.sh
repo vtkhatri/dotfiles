@@ -88,7 +88,8 @@ create_links functions.bash /home/$user/.config/functions.bash
 
 create_links config.fish /home/$user/.config/fish/config.fish
 create_links functions.fish /home/$user/.config/fish/functions/functions.fish
-create_links fish_prompt.fish /home/$user/.config/fish/functions/fish_prompt.fish
+# better default alternatives
+# create_links fish_prompt.fish /home/$user/.config/fish/functions/fish_prompt.fish
 
 # xinitrc for dwm
 
