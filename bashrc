@@ -17,20 +17,25 @@ fi
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH:$HOME/go/bin:$HOME/.cargo/bin"
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
 
 # User exports
-if [ -f $HOME/.config/exports_bash ]
+if [ -f $HOME/.config/aliases ]
 then
-	source $HOME/.config/exports_bash
+	source $HOME/.config/aliases
+fi
+
+if [ -f $HOME/.config/functions.bash ]
+then
+	source $HOME/.config/functions.bash
 fi
 
 # Local exports
-if [ -f $HOME/.config/exports_bash.local ]
+if [ -f $HOME/.config/exports.local.bash ]
 then
-	source $HOME/.config/exports_bash.local
+	source $HOME/.config/exports.local.bash
 fi
 
 rightPrompt() {

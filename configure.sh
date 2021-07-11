@@ -67,18 +67,27 @@ create_links vimrc /home/$user/.vim/vimrc
 
 create_links tmux.conf /home/$user/.tmux.conf
 
+# config directory creation
+if [ ! -d /home/$user/.config ]
+then
+	echo "~/.config not found, making directory"
+	mkdir /home/$user/.config/
+fi
+
+# aliases
+
+create_links aliases /home/$user/.config/aliases
+
 # bash setup
 
 create_links bash_profile /home/$user/.bash_profile
 create_links bashrc /home/$user/.bashrc
+create_links functions.bash /home/$user/.config/functions.bash
 
-if [ ! -d /home/$user/.config ]
-then
-	echo "~/.config not found, making directory"
-	ln -s $PWD/exports_bash /home/$user/.config/exports_bash
-else
-	create_links exports_bash /home/$user/.config/exports_bash
-fi
+# fish setup
+
+create_links config.fish /home/$user/.config/fish/config.fish
+create_links functions.fish /home/$user/.config/fish/functions/functions.fish
 
 # xinitrc for dwm
 
