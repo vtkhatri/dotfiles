@@ -61,6 +61,8 @@ let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " maps
+inoremap kj <Esc>
+inoremap jk <Esc>
 map ; :
 
 map <leader><leader> :b#<CR>
