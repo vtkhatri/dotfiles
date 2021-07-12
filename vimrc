@@ -27,15 +27,15 @@ hi Normal guibg=NONE ctermbg=NONE
 set nu
 set relativenumber
 
-" CleverTab not working as intended
-" function! CleverTab()
-" 	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
-" 		return "\<Tab>"
-" 	else
-" 		return "\<C-N>"
-" 	endif
-" endfunction
-" inoremap <Tab> <C-R>=CleverTab()<CR>
+" Auto-complete when strings are present, otherwise tab
+function! CleverTab()
+	if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+		return "\<Tab>"
+	else
+		return "\<C-N>"
+	endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
 
 " search
 set hlsearch
