@@ -77,3 +77,7 @@ map <leader>p :tabe ~/post.md<CR> " open post-it file
 map <leader>$ :s/\s\+$//g<CR>     " remove whitespace at the end of lines
 
 map <leader>q :%bd<bar>e#<CR>     " delete all buffers except current
+
+" fzf stuff
+nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+nnoremap <silent> <Leader><Enter>  :Buffers<CR>
