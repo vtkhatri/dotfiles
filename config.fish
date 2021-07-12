@@ -5,3 +5,5 @@ end
 if test -f /$HOME/.config/aliases;
 	source /$HOME/.config/aliases;
 end
+
+set fish_color_cwd cyan
