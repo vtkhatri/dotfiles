@@ -7,16 +7,29 @@ syntax enable
 filetype plugin indent on
 set encoding=utf-8
 set path+=**
+set backspace=indent,eol,start
+set autoread
+set visualbell
 
 " tabbing
 set ai
-set tabstop=8 softtabstop=0 shiftwidth=8 smarttab
+set tabstop=8
+set softtabstop=0
+set shiftwidth=8
+set smarttab
+set smartindent
 
 " organized backup and undo files
-set backup
-set backupdir=~/.vim/bkps/
-set undofile
-set undodir=~/.vim/undos/
+set noswapfile
+set nobackup
+set nowb
+
+" persistent undo
+if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
+	silent !mkdir ~/.vim/backups > /dev/null 2>&1
+	set undodir=~/.vim/backups
+	set undofile
+endif
 
 " colors
 set background=dark
@@ -42,6 +55,11 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+" scrolling
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
 
 " tabbing in :
 set wildmenu
