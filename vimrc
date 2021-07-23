@@ -25,9 +25,9 @@ set nobackup
 set nowb
 
 " persistent undo
-if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
-	silent !mkdir ~/.vim/backups > /dev/null 2>&1
-	set undodir=~/.vim/backups
+if has('persistent_undo') && isdirectory(expand('~').'/.vim/undos')
+	silent !mkdir ~/.vim/undos > /dev/null 2>&1
+	set undodir=~/.vim/undos
 	set undofile
 endif
 
