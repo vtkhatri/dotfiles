@@ -18,7 +18,7 @@ set softtabstop=0
 set shiftwidth=8
 set smarttab
 set smartindent
-autocmd FileType verilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab " hacky fix for verilog files
+autocmd FileType verilog setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab " hacky fix for verilog files
 
 " organized backup and undo files
 set noswapfile
