@@ -114,7 +114,7 @@ __prompt_command() {
 	# 1. exit code color
 	# 2. current working directory
 	if [ $EXIT != 0 ]; then
-		PS1+="\[${Red}\]> "	# Add red if exit code non 0
+		PS1+="\[${Red}\]$EXIT> " # Add red if exit code non 0
 	else
 		PS1+="\[${Gre}\]> "
 	fi
