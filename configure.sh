@@ -37,63 +37,69 @@ create_links ()
 
 # vim config
 
-if [ ! -d /home/$user/.vim ]
+if [ ! -d $HOME/.vim ]
 then
 	echo "~/.vim not found, making parent, backup and undo dirs"
-	mkdir -p /home/$user/.vim/bkps /home/$user/.vim/undos
+	mkdir -p $HOME/.vim/bkps $HOME/.vim/undos
 fi
 
-if [ ! -d /home/$user/.vim/bkps ]
+if [ ! -d $HOME/.vim/bkps ]
 then
 	echo "~/.vim/bkps not found, making"
-	mkdir /home/$user/.vim/bkps
+	mkdir $HOME/.vim/bkps
 fi
 
-if [ ! -d /home/$user/.vim/undos ]
+if [ ! -d $HOME/.vim/undos ]
 then
 	echo "~/.vim/undos not found, making"
-	mkdir /home/$user/.vim/undos
+	mkdir $HOME/.vim/undos
 fi
 
-if [ -f /home/$user/.vimrc ]
+if [ -f $HOME/.vimrc ]
 then
 	echo "moving ~/.vimrc to ~/.vim/vimrc_old"
-	mv /home/$user/.vimrc /home/$user/.vim/vimrc_old
+	mv $HOME/.vimrc $HOME/.vim/vimrc_old
 fi
 
-create_links vimrc /home/$user/.vim/vimrc
+create_links vimrc $HOME/.vim/vimrc
 
 # tmux config
 
-create_links tmux.conf /home/$user/.tmux.conf
+create_links tmux.conf $HOME/.tmux.conf
 
 # config directory creation
-if [ ! -d /home/$user/.config ]
+if [ ! -d $HOME/.config ]
 then
 	echo "~/.config not found, making directory"
-	mkdir /home/$user/.config/
+	mkdir -p $HOME/.config/fish/functions/
+else
+	if [ ! -d $HOME/.config/fish/functions/ ]
+	then
+		echo "~/.config found but ~/.config/fish/functions not found, making directory"
+		mkdir -p $HOME/.config/fish/functions/
+	fi
 fi
 
 # aliases
 
-create_links aliases /home/$user/.config/aliases
+create_links aliases $HOME/.config/aliases
 
 # bash setup
 
-create_links bash_profile /home/$user/.bash_profile
-create_links bashrc /home/$user/.bashrc
-create_links functions.bash /home/$user/.config/functions.bash
+create_links bash_profile $HOME/.bash_profile
+create_links bashrc $HOME/.bashrc
+create_links functions.bash $HOME/.config/functions.bash
 
 # fish setup
 
-create_links config.fish /home/$user/.config/fish/config.fish
-create_links functions.fish /home/$user/.config/fish/functions/functions.fish
-create_links fish_prompt.fish /home/$user/.config/fish/functions/fish_prompt.fish
-create_links fish_right_prompt.fish /home/$user/.config/fish/functions/fish_right_prompt.fish
+create_links config.fish $HOME/.config/fish/config.fish
+create_links functions.fish $HOME/.config/fish/functions/functions.fish
+create_links fish_prompt.fish $HOME/.config/fish/functions/fish_prompt.fish
+create_links fish_right_prompt.fish $HOME/.config/fish/functions/fish_right_prompt.fish
 
 # xinitrc for dwm
 
 if command -v dwm > /dev/null
 then
-	create_links xinitrc /home/$user/.xinitrc
+	create_links xinitrc $HOME/.xinitrc
 fi
