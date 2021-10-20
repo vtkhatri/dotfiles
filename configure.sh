@@ -63,9 +63,10 @@ fi
 
 create_links vimrc $HOME/.vim/vimrc
 
-# tmux config
+# tmux and screen config
 
 create_links tmux.conf $HOME/.tmux.conf
+create_links screenrc $HOME/.screenrc
 
 # config directory creation
 if [ ! -d $HOME/.config ]
