@@ -27,3 +27,6 @@ alias gb='git branch'
 alias gc='git commit'
 
 alias yolo='git commit -m `curl -s http://whatthecommit.com/index.txt`'
+
+# eh.
+alias wtf='dmesg'
