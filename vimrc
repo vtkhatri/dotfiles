@@ -34,7 +34,7 @@ endif
 
 " colors
 set background=dark
-colorscheme gruvbox
+colorscheme dracula
 hi Normal guibg=NONE ctermbg=NONE
 
 " gutter numbering
