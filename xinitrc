@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# old statusbar, for posterity
-#while xsetroot -name "`date +\"%a %b %d %H:%M\"` | BAT:`acpi | awk '/Charging/ {print \"+\"$4} /Discharging/ {print $4}  /Not charging/ {print \"+\"$5}'` CPU:`uptime | sed -e 's/.*ge: //g' -e 's/, .*//g' -e 's/\.//g'`%"
-
 # map caps to backspace
 xsetkbmap -option caps:backspace
 
