@@ -100,3 +100,10 @@ map <leader>r :checkt<CR>         " reload all buffers
 
 " can use :b<space> to use vim autocompete, also adding a shortcut
 nnoremap <silent> <Leader><Enter> :buffer<space>
+
+" source local .vim file
+try
+	source $HOME/.vim/exports.local.vim
+catch
+	" ignore if not found
+endtry
