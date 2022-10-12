@@ -34,9 +34,6 @@ endif
 
 " colors
 set background=dark
-packadd! dracula
-" let g:dracula_italic = 0 " to remove blue squares, or use a terminal that supports italics
-colorscheme dracula
 hi Normal guibg=NONE ctermbg=NONE
 
 " gutter numbering
