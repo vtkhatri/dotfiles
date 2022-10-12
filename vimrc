@@ -98,6 +98,5 @@ map <leader>$ :s/\s\+$//g<CR>     " remove whitespace at the end of lines
 map <leader>q :%bd<bar>e#<CR>     " delete all buffers except current
 map <leader>r :checkt<CR>         " reload all buffers
 
-" fzf stuff
-nnoremap <silent> <expr> <Leader>f (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+" can use :b<space> to use vim autocompete, also adding a shortcut
 nnoremap <silent> <Leader><Enter> :buffer<space>
