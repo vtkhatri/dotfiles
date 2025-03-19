@@ -8,6 +8,7 @@ return {
         n = {
           -- second key is the lefthand side of the map
           -- mappings seen under group name "Yank"
+          ["<Leader>y"] = { desc = "Yank"},
           ["<Leader>yy"] = {
             function()
               vim.cmd("echo expand('%:p')")
