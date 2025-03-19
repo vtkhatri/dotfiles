@@ -26,7 +26,7 @@ create_links ()
 			mv $link_path ${link_path}_old
 			ln -s $PWD/$current_dir_file $link_path
 		else
-			echo "$link_path is already a symlink, updating"
+			echo "$link_path is already a symlink, updating" 
 			rm $link_path
 			ln -s $PWD/$current_dir_file $link_path
 		fi
@@ -62,6 +62,15 @@ then
 fi
 
 create_links vimrc $HOME/.vim/vimrc
+
+# nvim config
+if [ -d $HOME/.config/nvim ]
+then
+	echo "~/.config/nvim found, moving to ~/.config/nvim.bak"
+	mv $HOME/.config/nvim $HOME/.config.bak
+fi
+
+create_links nvim $HOME/.config
 
 # tmux and screen config
 
