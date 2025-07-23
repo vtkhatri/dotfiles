@@ -24,15 +24,18 @@ create_links ()
 		then
 			echo "$link_path not a symlink, moving file and linking"
 			mv $link_path ${link_path}_old
-			ln -s $PWD/$current_dir_file $link_path
 		else
-			echo "$link_path is already a symlink, updating" 
+			echo "$link_path is already a symlink, updating"
 			rm $link_path
-			ln -s $PWD/$current_dir_file $link_path
 		fi
 	else
-		ln -s $PWD/$current_dir_file $link_path
+		if [ -L $link_path ]
+		then
+			echo "$link_path is already a symlink, updating"
+			rm $link_path
+		fi
 	fi
+	ln -s $PWD/$current_dir_file $link_path
 }
 
 # vim config
@@ -61,7 +64,7 @@ then
 	mv $HOME/.vimrc $HOME/.vim/vimrc_old
 fi
 
-create_links vimrc $HOME/.vim/vimrc
+create_links config/vimrc $HOME/.vim/vimrc
 
 # nvim config
 if [ -d $HOME/.config/nvim ]
@@ -74,8 +77,8 @@ create_links nvim $HOME/.config
 
 # tmux and screen config
 
-create_links tmux.conf $HOME/.tmux.conf
-create_links screenrc $HOME/.screenrc
+create_links config/tmux.conf $HOME/.tmux.conf
+create_links config/screenrc $HOME/.screenrc
 
 # config directory creation
 if [ ! -d $HOME/.config ]
@@ -92,24 +95,24 @@ fi
 
 # aliases
 
-create_links aliases $HOME/.config/aliases
+create_links config/aliases $HOME/.config/aliases
 
 # bash setup
 
-create_links bash_profile $HOME/.bash_profile
-create_links bashrc $HOME/.bashrc
-create_links functions.bash $HOME/.config/functions.bash
+create_links config/bash/bash_profile $HOME/.bash_profile
+create_links config/bash/bashrc $HOME/.bashrc
+create_links config/bash/functions.bash $HOME/.config/functions.bash
 
 # fish setup
 
-create_links config.fish $HOME/.config/fish/config.fish
-create_links functions.fish $HOME/.config/fish/functions/functions.fish
-create_links fish_prompt.fish $HOME/.config/fish/functions/fish_prompt.fish
-create_links fish_right_prompt.fish $HOME/.config/fish/functions/fish_right_prompt.fish
+create_links config/fish/config.fish $HOME/.config/fish/config.fish
+create_links config/fish/functions.fish $HOME/.config/fish/functions/functions.fish
+create_links config/fish/fish_prompt.fish $HOME/.config/fish/functions/fish_prompt.fish
+create_links config/fish/fish_right_prompt.fish $HOME/.config/fish/functions/fish_right_prompt.fish
 
 # xinitrc for dwm
 
 if command -v dwm > /dev/null
 then
-	create_links xinitrc $HOME/.xinitrc
+	create_links config/xinitrc $HOME/.xinitrc
 fi

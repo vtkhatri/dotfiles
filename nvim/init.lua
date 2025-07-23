@@ -174,7 +174,7 @@ vim.o.wildmode = 'longest,full'
 
 --  custom keymaps
 vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'save' })
-vim.keymap.set('n', '<leader>e', ':Neotree<CR>', { desc = 'neotree' })
+vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>', { desc = 'neotree' })
 vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = 'launch telescope' })
 vim.keymap.set('n', '<leader>yy', function()
   vim.cmd "echo expand('%:p')"
@@ -279,7 +279,6 @@ require('lazy').setup({
       }
     end,
   },
-  'catppuccin/nvim',
 
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
