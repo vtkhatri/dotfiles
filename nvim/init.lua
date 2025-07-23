@@ -173,13 +173,14 @@ vim.o.wildmode = 'longest,full'
 --  See `:help vim.keymap.set()`
 
 --  custom keymaps
-vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'save' })
-vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>', { desc = 'neotree' })
-vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = 'launch telescope' })
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = '[W]rite buffer to disk' })
+vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>', { desc = '[E]xplore with neotree' })
+vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = '[T]elescope inpu[T]' })
+vim.keymap.set('n', '<leader>ts', ':sp term://$SHELL<CR>A', { desc = '[T]erminal [S]plit' })
 vim.keymap.set('n', '<leader>yy', function()
   vim.cmd "echo expand('%:p')"
   vim.cmd "let @+ = expand('%:p')"
-end, { desc = 'yank buffer full filepath' })
+end, { desc = "[Y]ank buffer's full filepath" })
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'jk to exit insert mode' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -379,8 +380,9 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = '[T]oggle/[T]elescope/[T]erminal' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>y', group = '[Y]ank' },
       },
     },
   },
