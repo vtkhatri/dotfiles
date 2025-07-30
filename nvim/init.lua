@@ -167,21 +167,21 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- better wildmode completion on tab
-vim.o.wildmode = 'longest,full'
+vim.o.wildmode = 'list:longest,full'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 --  custom keymaps
-vim.keymap.set('n', '<leader>w', function()
-  vim.cmd "echo 'updating buffer to' expand('%:p')"
-  vim.cmd "update"
-end, { desc = '[W]rite buffer to disk using :update' })
+vim.keymap.set('n', '<leader>u', function()
+  vim.notify('updated: ' .. vim.fn.expand '%:P', vim.log.levels.INFO)
+  vim.cmd 'update'
+end, { desc = '[U]pdate buffer to disk' })
 vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = '[T]elescope inpu[T]' })
 vim.keymap.set('n', '<leader>ts', ':sp term://$SHELL<CR>A', { desc = '[T]erminal [S]plit' })
 vim.keymap.set('n', '<leader>yy', function()
-  vim.cmd "echo expand('%:p')"
-  vim.cmd "let @+ = expand('%:p')"
+  vim.notify('yanked: ' .. vim.fn.expand '%:p', vim.log.levels.INFO)
+  vim.cmd 'let @+ = expand("%:p")'
 end, { desc = "[Y]ank buffer's full filepath" })
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'jk to exit insert mode' })
 
