@@ -173,8 +173,10 @@ vim.o.wildmode = 'longest,full'
 --  See `:help vim.keymap.set()`
 
 --  custom keymaps
-vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = '[W]rite buffer to disk' })
-vim.keymap.set('n', '<leader>e', ':Neotree toggle=true<CR>', { desc = '[E]xplore with neotree' })
+vim.keymap.set('n', '<leader>w', function()
+  vim.cmd "echo 'updating buffer to' expand('%:p')"
+  vim.cmd "update"
+end, { desc = '[W]rite buffer to disk using :update' })
 vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = '[T]elescope inpu[T]' })
 vim.keymap.set('n', '<leader>ts', ':sp term://$SHELL<CR>A', { desc = '[T]erminal [S]plit' })
 vim.keymap.set('n', '<leader>yy', function()
