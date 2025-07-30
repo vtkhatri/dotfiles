@@ -2,7 +2,9 @@
 --  See `:help vim.keymap.set()`
 
 --  custom keymaps
-vim.keymap.set('n', '<leader>u', vim.cmd 'update', { desc = '[U]pdate buffer to disk' })
+vim.keymap.set('n', '<leader>u', function()
+  vim.cmd 'update'
+end, { desc = '[U]pdate buffer to disk' })
 vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = '[T]elescope inpu[T]' })
 vim.keymap.set('n', '<leader>ts', ':sp term://$SHELL<CR>A', { desc = '[T]erminal [S]plit' })
 vim.keymap.set('n', '<leader>yy', function()
