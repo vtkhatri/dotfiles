@@ -12,6 +12,7 @@ vim.keymap.set('n', '<leader>yy', function()
   vim.cmd 'let @+ = expand("%:p")'
 end, { desc = "[Y]ank buffer's full filepath" })
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'jk to exit insert mode' })
+vim.keymap.set('i', 'JK', '<Esc>', { desc = 'JK to exit insert mode too' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
