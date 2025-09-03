@@ -11,6 +11,7 @@ end
 
 set fish_color_cwd cyan
 fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/.local/bin
 
 if test -f /$HOME/.vim/pack/fzf/start/fzf/shell/key-bindings.fish;
 	source /$HOME/.vim/pack/fzf/start/fzf/shell/key-bindings.fish
