@@ -94,24 +94,20 @@ else
 fi
 
 # aliases
-
 create_links config/aliases $HOME/.config/aliases
 
 # bash setup
-
 create_links config/bash/bash_profile $HOME/.bash_profile
 create_links config/bash/bashrc $HOME/.bashrc
 create_links config/bash/functions.bash $HOME/.config/functions.bash
 
 # fish setup
-
 create_links config/fish/config.fish $HOME/.config/fish/config.fish
 create_links config/fish/functions.fish $HOME/.config/fish/functions/functions.fish
 create_links config/fish/fish_prompt.fish $HOME/.config/fish/functions/fish_prompt.fish
 create_links config/fish/fish_right_prompt.fish $HOME/.config/fish/functions/fish_right_prompt.fish
 
 # xinitrc for dwm
-
 if command -v dwm > /dev/null
 then
 	create_links config/xinitrc $HOME/.xinitrc
