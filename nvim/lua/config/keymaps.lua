@@ -5,7 +5,6 @@
 vim.keymap.set('n', '<leader>u', function()
   vim.cmd 'update'
 end, { desc = '[U]pdate buffer to disk' })
-vim.keymap.set('n', '<leader>tt', ':Telescope<CR>', { desc = '[T]elescope inpu[T]' })
 vim.keymap.set('n', '<leader>ts', ':sp term://$SHELL<CR>A', { desc = '[T]erminal [S]plit' })
 vim.keymap.set('n', '<leader>yy', function()
   vim.notify('yanked: ' .. vim.fn.expand '%:p', vim.log.levels.INFO)
