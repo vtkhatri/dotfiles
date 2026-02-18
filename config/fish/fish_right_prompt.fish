@@ -127,7 +127,7 @@ function fish_right_prompt
     if test -n "$action"
         set_color normal
         echo -n (set_color white)':'(set_color -o brred)"$action"
-	set_color normal
+        set_color normal
     end
     if test $status_ahead -ne 0
         #echo -n ' '(set_color brmagenta)'⬆'
