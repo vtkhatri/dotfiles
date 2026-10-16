@@ -75,10 +75,10 @@ fi
 
 create_links nvim $HOME/.config
 
-# tmux and screen config
-
+# terminal multiplexer configs
 create_links config/tmux.conf $HOME/.tmux.conf
 create_links config/screenrc $HOME/.screenrc
+create_links config/herdr.config.toml $HOME/.config/herdr/config.toml
 
 # config directory creation
 if [ ! -d $HOME/.config ]
