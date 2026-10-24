@@ -42,21 +42,18 @@ create_links ()
 			echo "$link_path is already a symlink, updating"
 			rm $link_path
 		fi
+		if [ -d $link_path ]
+		then
+			echo "$link_path is already a directory, moving and linking"
+			mv $link_path ${link_path}.bak
+		fi
 	fi
 	ln -s $PWD/$current_dir_file $link_path
 }
 
-# vim config
+# editor config
+create_links nvim $HOME/.config/nvim
 create_links config/vimrc $HOME/.vim/vimrc
-
-# nvim config (needs to create folder so that destructive replace code in create_links above does not constantly replace the config directory)
-if [ -d $HOME/.config/nvim ]
-then
-	echo "~/.config/nvim found, moving to ~/.config/nvim.bak"
-	mv $HOME/.config/nvim $HOME/.config.bak
-fi
-
-create_links nvim $HOME/.config
 
 # terminal multiplexer configs
 create_links config/tmux.conf $HOME/.tmux.conf
